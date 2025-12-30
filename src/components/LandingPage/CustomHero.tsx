@@ -36,25 +36,25 @@ export function CustomHero() {
   return (
     <div className={styles.heroBanner}>
       <div className={styles.heroContainer}>
-        <h1 className={styles.heroTitle}>The Future of AI is Embodied</h1>
+        <h1 className={styles.heroTitle}>
+          Master the Future of Physical AI
+        </h1>
         <p className={styles.heroSubtitle}>
-          An open-source textbook on the software and hardware for building, training, and deploying
-          the next generation of autonomous humanoid robots.
+          The comprehensive open-source textbook for building, training, and deploying autonomous humanoid robots.
+          From ROS 2 fundamentals to advanced vision-language-action models—learn the complete stack with AI-powered assistance.
         </p>
         <div className={styles.buttons}>
           <Link
             className={`button button--primary button--lg ${styles.heroButton}`}
             to="/humanoid-robotics-ebook/module1-ros2/chapter1-introduction">
-            Start Reading
+            Explore Modules
           </Link>
-          {/* T087: Convert Link to button with onClick handler */}
-          {/* T091: Preserve button styling to match original Link appearance */}
           <button
             className={`button button--secondary button--lg ${styles.heroButton}`}
             onClick={handleGetStarted}
             aria-label={isAuthenticated ? "Open AI chatbot assistant" : "Sign up to access AI chatbot"}
             type="button">
-            Get Started with AI
+            {isAuthenticated ? 'Ask AI Assistant' : 'Start Learning Free'}
           </button>
         </div>
       </div>

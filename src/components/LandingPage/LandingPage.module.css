@@ -1,11 +1,11 @@
 /**
  * CSS module for the landing page components.
  *
- * Provides a dark, minimalistic, and modern theme.
+ * Provides a dark, minimalistic, and modern theme with elegant animations.
  */
 
 .heroBanner {
-  padding: 8rem 0;
+  padding: 10rem 0 8rem;
   text-align: center;
   position: relative;
   overflow: hidden;
@@ -16,100 +16,376 @@
 .heroBanner::before {
   content: '';
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: radial-gradient(ellipse at top, rgba(120, 119, 198, 0.15) 0%, transparent 70%);
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background:
+    radial-gradient(circle at 30% 20%, rgba(120, 119, 198, 0.12) 0%, transparent 50%),
+    radial-gradient(circle at 70% 60%, rgba(99, 102, 241, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 50% 80%, rgba(139, 92, 246, 0.06) 0%, transparent 50%);
+  animation: gradientMove 20s ease infinite;
+}
+
+@keyframes gradientMove {
+  0%, 100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  50% {
+    transform: translate(20px, 20px) rotate(5deg);
+  }
 }
 
 .heroContainer {
   position: relative;
   z-index: 1;
-  max-width: 800px;
+  max-width: 900px;
   margin: 0 auto;
-  padding: 0 1rem;
+  padding: 0 1.5rem;
+  animation: fadeInUp 0.8s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .heroTitle {
-  font-size: 3.5rem;
-  font-weight: 800;
-  margin-bottom: 1rem;
-  background: linear-gradient(135deg, #e0e0e0 0%, #a0a0a0 100%);
+  font-size: 4rem;
+  font-weight: 900;
+  margin-bottom: 1.5rem;
+  line-height: 1.1;
+  background: linear-gradient(135deg, #ffffff 0%, #d0d0d0 30%, #7877c6 60%, #a0a0a0 100%);
+  background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  animation: shimmer 8s ease-in-out infinite;
+  letter-spacing: -0.02em;
+}
+
+@keyframes shimmer {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
 }
 
 .heroSubtitle {
-  font-size: 1.25rem;
-  color: #a0a0a0;
-  line-height: 1.6;
-  margin-bottom: 2.5rem;
+  font-size: 1.35rem;
+  color: #b0b0b0;
+  line-height: 1.7;
+  margin-bottom: 3rem;
+  max-width: 750px;
+  margin-left: auto;
+  margin-right: auto;
+  font-weight: 400;
 }
 
 .buttons {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 1rem;
+  gap: 1.25rem;
+  flex-wrap: wrap;
 }
 
 .heroButton {
   border-radius: 50px;
   font-weight: 600;
-  padding: 0.8rem 2rem;
-  transition: all 0.3s ease;
+  padding: 1rem 2.5rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  border: none;
+  font-size: 1.05rem;
+}
+
+.heroButton::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s ease, height 0.6s ease;
+}
+
+.heroButton:hover::before {
+  width: 400px;
+  height: 400px;
 }
 
 .heroButton:hover {
-  transform: translateY(-2px);
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 12px 32px rgba(120, 119, 198, 0.4);
+}
+
+.heroButton:active {
+  transform: translateY(-1px) scale(1);
 }
 
 /* Feature Showcase */
 .featureShowcase {
-  padding: 6rem 1rem;
-  background-color: #0a0a0a;
+  padding: 8rem 1.5rem;
+  background: linear-gradient(180deg, #0a0a0a 0%, #0f0f0f 50%, #0a0a0a 100%);
+  position: relative;
+}
+
+.featureShowcase::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(120, 119, 198, 0.3) 50%, transparent 100%);
 }
 
 .featureContainer {
-  max-width: 1100px;
+  max-width: 1200px;
   margin: 0 auto;
+}
+
+.sectionTitle {
+  text-align: center;
+  font-size: 2.75rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+  color: #ffffff;
+  letter-spacing: -0.02em;
+}
+
+.sectionSubtitle {
+  text-align: center;
+  font-size: 1.15rem;
+  color: #a0a0a0;
+  margin-bottom: 4rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .featureGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2.5rem;
+  margin-bottom: 3rem;
 }
 
 .featureCard {
-  background: #1a1a1a;
-  border: 1px solid #2a2a2a;
-  border-radius: 12px;
-  padding: 2rem;
+  background: linear-gradient(135deg, #1a1a1a 0%, #151515 100%);
+  border: 1px solid #252525;
+  border-radius: 16px;
+  padding: 2.5rem;
   text-align: center;
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.featureCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #7877c6, #6366f1, #8b5cf6);
+  transform: scaleX(0);
+  transition: transform 0.4s ease;
+}
+
+.featureCard:hover::before {
+  transform: scaleX(1);
 }
 
 .featureCard:hover {
-  transform: translateY(-8px);
-  border-color: #7877c6;
-  box-shadow: 0 8px 32px rgba(120, 119, 198, 0.1);
+  transform: translateY(-10px);
+  border-color: rgba(120, 119, 198, 0.5);
+  box-shadow:
+    0 20px 40px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(120, 119, 198, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  background: linear-gradient(135deg, #1f1f1f 0%, #1a1a1a 100%);
 }
 
 .featureIcon {
-  font-size: 3rem;
-  margin-bottom: 1rem;
+  font-size: 3.5rem;
+  margin-bottom: 1.5rem;
+  display: inline-block;
+  transition: transform 0.4s ease;
+  filter: drop-shadow(0 4px 12px rgba(120, 119, 198, 0.3));
+}
+
+.featureCard:hover .featureIcon {
+  transform: scale(1.1) rotateY(10deg);
 }
 
 .featureTitle {
-  font-size: 1.5rem;
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-  color: #e0e0e0;
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  color: #ffffff;
+  letter-spacing: -0.01em;
 }
 
 .featureDescription {
+  color: #b0b0b0;
+  line-height: 1.7;
+  font-size: 1.05rem;
+}
+
+/* Stats Section */
+.statsSection {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  margin-top: 6rem;
+  padding-top: 4rem;
+  border-top: 1px solid #252525;
+}
+
+.statCard {
+  text-align: center;
+  padding: 1.5rem;
+}
+
+.statNumber {
+  font-size: 3rem;
+  font-weight: 900;
+  background: linear-gradient(135deg, #7877c6 0%, #9b9acf 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.statLabel {
   color: #a0a0a0;
-  line-height: 1.6;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+/* Call to Action Section */
+.ctaSection {
+  text-align: center;
+  margin-top: 6rem;
+  padding: 4rem 2rem;
+  background: linear-gradient(135deg, rgba(120, 119, 198, 0.08) 0%, rgba(99, 102, 241, 0.05) 100%);
+  border-radius: 24px;
+  border: 1px solid rgba(120, 119, 198, 0.2);
+}
+
+.ctaTitle {
+  font-size: 2.25rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+  color: #ffffff;
+}
+
+.ctaDescription {
+  font-size: 1.15rem;
+  color: #b0b0b0;
+  margin-bottom: 2rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.ctaButton {
+  display: inline-block;
+  padding: 1rem 2.5rem;
+  background: linear-gradient(135deg, #7877c6 0%, #6366f1 100%);
+  color: white;
+  border-radius: 50px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  font-size: 1.05rem;
+}
+
+.ctaButton:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px rgba(120, 119, 198, 0.4);
+  color: white;
+  text-decoration: none;
+}
+
+/* Responsive Design */
+@media (max-width: 996px) {
+  .heroTitle {
+    font-size: 3rem;
+  }
+
+  .heroSubtitle {
+    font-size: 1.15rem;
+  }
+
+  .sectionTitle {
+    font-size: 2.25rem;
+  }
+
+  .featureGrid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .statsSection {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .heroBanner {
+    padding: 6rem 0 4rem;
+  }
+
+  .heroTitle {
+    font-size: 2.25rem;
+  }
+
+  .heroSubtitle {
+    font-size: 1rem;
+  }
+
+  .heroButton {
+    padding: 0.875rem 2rem;
+    font-size: 1rem;
+  }
+
+  .buttons {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .heroButton {
+    width: 100%;
+  }
+
+  .featureShowcase {
+    padding: 4rem 1rem;
+  }
+
+  .sectionTitle {
+    font-size: 1.875rem;
+  }
+
+  .statsSection {
+    grid-template-columns: 1fr;
+  }
+
+  .statNumber {
+    font-size: 2.5rem;
+  }
 }
